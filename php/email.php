@@ -5,6 +5,8 @@ if(isset($_POST['email'])) {
      
  
     // EDIT THE 2 LINES BELOW AS REQUIRED
+    
+    $admin = "admin@dev-ic.com";
  
     $email_to = "le.hung@givery.co.jp";
  
@@ -128,25 +130,15 @@ if(isset($_POST['email'])) {
  
 // create email headers
  
-$headers = 'From: '.$email_from."\r\n".
+$headers = 'From: '.$admin."\r\n".
  
-'Reply-To: '.$email_from."\r\n" .
- 
-'X-Mailer: PHP/' . phpversion();
- 
-@mail($email_to, $email_subject, $email_message, $headers); 
-
-
-$headers01 = 'From: '.$email_to."\r\n".
- 
-'Reply-To: '.$email_to."\r\n" .
+'Reply-To: '.$admin."\r\n" .
  
 'X-Mailer: PHP/' . phpversion();
 
-$email_subject01 = "Test mail OK" ;
-
-sleep(1);
-@mail($email_form, $email_subject01, $email_message, $headers01);  
+$email = $email_to .", " .$email_from;
+ 
+@mail($email, $email_subject, $email_message, $headers); 
  
 ?>
 
