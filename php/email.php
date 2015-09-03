@@ -134,7 +134,19 @@ $headers = 'From: '.$email_from."\r\n".
  
 'X-Mailer: PHP/' . phpversion();
  
-@mail($email_to, $email_subject, $email_message, $headers);  
+@mail($email_to, $email_subject, $email_message, $headers); 
+
+
+$headers01 = 'From: '.$email_to."\r\n".
+ 
+'Reply-To: '.$email_to."\r\n" .
+ 
+'X-Mailer: PHP/' . phpversion();
+
+$email_subject01 = "Test mail OK" ;
+
+sleep(1);
+@mail($email_form, $email_subject01, $email_message, $headers01);  
  
 ?>
 
