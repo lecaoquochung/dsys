@@ -1,0 +1,64 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+	<head>
+		<title>Rank Mobile API Test</title>
+		<!--css -->
+		<!-- <link href='https://lecaoquochung.github.io/ddnb.template/libs/bootstrap/newest/css/bootstrap.css' rel='stylesheet' type='text/css'> -->
+		
+		<!-- js -->
+		<script src="https://lecaoquochung.github.io/ddnb.template/libs/jquery/2.1.1/jquery-2.1.1.min.js"></script> 
+		<script src="https://lecaoquochung.github.io/ddnb.template/libs/bootstrap/newest/js/bootstrap.js"></script>
+	</head>
+	<body>
+		<div class="row">
+			キーワード：
+			<input id="keyword" type="text" value="" />
+			対策ＵＲＬ：
+			<input id="url" type="text" value="" />
+			検索エンジン：
+			<select id="engine">
+				<option value="1">GoogleJP</option>
+				<option value="2">YahooJP</option>
+				<option value="3">YahooJP/GoogleJP</option>
+			 </select>
+			<input id="search_btn" type="button" value="検索" />
+			<div id="search_result"></div>
+			<?php print_r($_SERVER['HTTP_USER_AGENT']); ?>
+			<?php echo "Test"; ?>
+		</div>
+	</body>
+
+<script>
+$(document).ready(function(){
+ 
+    $("#search_btn").click(function(){
+    	var requestURL = "http://api.ddnb.info/rankmobile/1";
+    	requestURL += "?callback=responce";
+		requestURL += "&keyword=" + document.getElementById("keyword").value;
+		requestURL += "&url=" + document.getElementById("url").value;
+		requestURL += "&engine=" + document.getElementById("engine").value;
+		console.log(requestURL);
+		
+        $.ajax({
+            url: requestURL,
+            dataType: 'jsonp',
+            jsonp: 'callback',
+            jsonpCallback: 'jsonpCallback',
+            success: function(data){
+            	console.log(data);
+            	var data = JSON.stringify(data);
+            	$('#search_result').text(data);
+                // alert("success");
+            }
+        });
+    });
+ 
+});
+ 
+function jsonpCallback(data){
+    $('#search_result').text(data.message);
+}
+</script>
+
+</script>
+</html>
