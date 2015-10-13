@@ -1,0 +1,50 @@
+<html>
+<head>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="js/javascript.js"></script>
+<script>
+var d = new Date(); 
+var year = d.getFullYear();	
+var month = d.getMonth()+1;	
+var day = d.getDate();	
+var hour = d.getHours();
+var min = d.getMinutes();	
+var second = d.getSeconds()	
+console.log(year+"-"+month+"-"+day+"_"+hour+"-"+min+"-"+second);
+console.log(window.location.href);
+
+var randomString = randomString();
+console.log(randomString); 
+</script>
+</head>
+<body>
+
+<form action="welcome.php" method="post" id="formtest">
+Name: <input type="text" name="fname" class="input">
+Age: <input type="text" name="age" class="input">
+<input type="submit">
+</form>
+
+<script>
+		  var arr = document.getElementsByClassName("input");				
+		  var i;
+
+		  for (i=0; i < arr.length; i++) {
+//console.log(arr[i].getAttribute('id'));
+			//if (arr[i].getAttribute('method') == "POST") {
+			  arr[i].elements["fname"].value="kiet";
+			  arr[i].elements["age"].value="27";
+
+			  // This part doesn't seem to work. It returns the content
+			  // of the current page, not the content of the page after 
+			  // the submit has been executed. Am I correctly instrumenting
+			  // the submit in Phantom?
+			  arr[i].submit();
+			  //return document.querySelectorAll('html')[0].outerHTML;
+			  console.log(document.querySelectorAll('html')[0].outerHTML);
+			//}
+
+		  }
+</script>
+</body>
+</html> 
