@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>bind demo</title>
+  <style>
+  p {
+    background: yellow;
+    font-weight: bold;
+    cursor: pointer;
+    padding: 5px;
+  }
+  p.over {
+     background: #ccc;
+  }
+  span {
+    color: red;
+  }
+  </style>
+  <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+  
+  <script>
+    $(document).ready(function() {
+      var message = "Spoon!";
+      $( "#block" ).bind( "contextmenu", function() {
+        alert( message );
+      });
+    });
+    
+  </script>
+  
+</head>
+<body>
+ 
+<p>Click or double click here.</p>
+<span></span>
+ 
+<script>
+$( "p" ).bind( "click", function( event ) {
+  var str = "( " + event.pageX + ", " + event.pageY + " )";
+  $( "span" ).text( "Click happened! " + str );
+});
+$( "p" ).bind( "dblclick", function() {
+  $( "span" ).text( "Double-click happened in " + this.nodeName );
+});
+$( "p" ).bind( "mouseenter mouseleave", function( event ) {
+  $( this ).toggleClass( "over" );
+});
+
+</script>
+ 
+<video id="block" width="400" controls>
+  <source src="//akademeia-git.lecaoquochung.com/login/iframe-video.php?meeting_id=111&video=top_video_base.mp4" type="video/mp4">
+  Your browser does not support HTML5 video.
+</video>
+
+<p>
+Video courtesy of 
+<a href="http://www.bigbuckbunny.org/" target="_blank">Big Buck Bunny</a>.
+</p>
+
+</body>
+</html>
