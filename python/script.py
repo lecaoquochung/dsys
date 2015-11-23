@@ -37,4 +37,6 @@ print letter_index # print out letter H
 
 # String method len(), lower(), upper(), str()
 
-
+query = "Python is so cool with string proccessing"
+print len(query);
+print query.lower();
